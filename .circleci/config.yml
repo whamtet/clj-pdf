@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: cimg/clojure:lein-2.10
+      - image: clojure:lein-2.10.0
     steps:
       - checkout
 
