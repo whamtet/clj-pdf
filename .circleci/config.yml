@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/clojure:lein-2.10
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - lein-deps-{{ checksum "project.clj" }}
+            - lein-deps-
+
+      - run:
+          name: Run tests
+          command: lein test
+
+      - save_cache:
+          paths:
+            - ~/.m2
+            - ~/.lein
+          key: lein-deps-{{ checksum "project.clj" }}
+
+workflows:
+  test-only:
+    jobs:
+      - test
