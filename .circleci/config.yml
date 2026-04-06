@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: clojure:lein-2.10.0
+      - image: cimg/clojure:1.12.0-openjdk-8.0
     steps:
       - checkout
 
